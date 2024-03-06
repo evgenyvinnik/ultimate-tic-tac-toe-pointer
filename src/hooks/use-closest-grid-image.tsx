@@ -21,7 +21,6 @@ const fetchPositions: Point[] = positionsJson.map(([x, y]) => ({ x, y }));
 export const useClosestGridImage = (absolutePosition?: Point) => {
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const windowSize = useWindowSize();
-  // const { result: positions } = useAsync(fetchPositions, []);
   const positions = fetchPositions;
 
   const [imageIndex, pointPosition] = useClosest(
@@ -30,7 +29,7 @@ export const useClosestGridImage = (absolutePosition?: Point) => {
     positions
   );
   const image = useImage(
-    imageIndex !== undefined ? `/images/${imageIndex}.jpg` : undefined
+    imageIndex !== undefined ? `/ultimate-tic-tac-toe-pointer/images/${imageIndex}.jpg` : undefined
   )[0];
   useEffect(() => {
     if (!image || !absolutePosition || !pointPosition) {
