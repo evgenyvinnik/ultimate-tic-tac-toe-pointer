@@ -9,14 +9,14 @@ export const useDebouncedPosition = () => {
   const [position, setPosition] = useState<Point | undefined>();
 
   useEffect(() => {
-    document.addEventListener('mouseleave', () => setLeft(true));
-    document.addEventListener('mouseenter', () => setLeft(false));
+    document.addEventListener("mouseleave", () => setLeft(true));
+    document.addEventListener("mouseenter", () => setLeft(false));
   }, []);
 
   const bind = (isMouse ? useMove : useDrag)(({ xy: [x, y] }) => {
     setPosition({ x: x, y });
   });
-  const debouncedPosition = useDebounce(position, 2000);
+  const debouncedPosition = useDebounce(position, 20);
   return [bind, debouncedPosition, !left ? position : undefined] as [
     typeof bind,
     typeof debouncedPosition,

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./css/App.css";
 import { useWindowSize } from "./hooks/use-window-size";
-import { Loading } from "./Loading";
 import { Cursor } from "./Cursor";
 import { useDebouncedPosition } from "./hooks/use-debounced-position";
 import { useClosestGridImage } from "./hooks/use-closest-grid-image";
@@ -13,6 +12,20 @@ const App: React.FC = () => {
 
   const [bind, position, mousePosition] = useDebouncedPosition();
   const [image, style] = useClosestGridImage(position);
+
+  const [displayImage, setDisplayImage] = useState<
+    HTMLImageElement | undefined
+  >(undefined);
+  const [displayStyle, setDisplayStyle] = useState<
+    React.CSSProperties | undefined
+  >(undefined);
+  useEffect(() => {
+    if (image != null && style != null) {
+      setDisplayImage(image);
+      setDisplayStyle(style);
+    }
+  }, [image, style]);
+
   return (
     <>
       <div
@@ -28,32 +41,19 @@ const App: React.FC = () => {
         style={{
           width: windowSize.x,
           height: windowSize.y,
-          // transform: 'scale(0.5)',
         }}
       >
         {!isMouse && mousePosition ? <Cursor position={mousePosition} /> : null}
-        {image ? (
-          <>
-            <div style={{ position: "absolute", transform: "scale(1.1)" }}>
-              <img
-                style={{ ...style, filter: "blur(8px)" }}
-                alt="someone pointing at your pointer"
-                key={image.src}
-                src={image.src}
-              />
-            </div>
-            <div style={{ position: "absolute" }}>
-              <img
-                style={style}
-                alt="someone pointing at your pointer"
-                key={image.src}
-                src={image.src}
-              />
-            </div>
-          </>
-        ) : (
-          <Loading position={mousePosition} />
-        )}
+        {displayImage ? (
+          <div style={{ position: "absolute" }}>
+            <img
+              style={displayStyle}
+              alt="someone pointing at your pointer"
+              key={displayImage.src}
+              src={displayImage.src}
+            />
+          </div>
+        ) : null}
       </div>
     </>
   );

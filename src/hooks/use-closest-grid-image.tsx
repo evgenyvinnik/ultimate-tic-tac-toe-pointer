@@ -12,9 +12,9 @@ import {
   fitSize,
 } from "../Point";
 import { useClosest } from "../closest";
-import { useImage } from "./use-image";
 import { useWindowSize } from "./use-window-size";
 import positionsJson from "../new-positions.json";
+import { images } from "../assets/images";
 
 const fetchPositions: Point[] = positionsJson.map(([x, y]) => ({ x, y }));
 
@@ -28,9 +28,16 @@ export const useClosestGridImage = (absolutePosition?: Point) => {
     absolutePosition,
     positions
   );
-  const image = useImage(
-    imageIndex !== undefined ? `/ultimate-tic-tac-toe-pointer/images/${imageIndex}.jpg` : undefined
-  )[0];
+
+  const image = ((index: number | undefined) => {
+    if (index != null) {
+      const image = new Image();
+      image.src = (images as any)[index] as any;
+      return image;
+    }
+    return null;
+  })(imageIndex);
+
   useEffect(() => {
     if (!image || !absolutePosition || !pointPosition) {
       setStyle(undefined);
