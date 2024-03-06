@@ -11,17 +11,10 @@ import {
   addPoints,
   fitSize,
 } from "../Point";
-// import { useAsync } from "react-async-hook";
 import { useClosest } from "../closest";
 import { useImage } from "./use-image";
 import { useWindowSize } from "./use-window-size";
 import positionsJson from "../new-positions.json";
-import { images } from "../assets/images";
-
-// const fetchPositions = async (): Promise<Point[]> =>
-//   (
-//     (await (await fetch(`/new-positions.json`)).json()) as [number, number][]
-//   ).map(([x, y]) => ({ x, y }));
 
 const fetchPositions: Point[] = positionsJson.map(([x, y]) => ({ x, y }));
 
@@ -36,7 +29,9 @@ export const useClosestGridImage = (absolutePosition?: Point) => {
     absolutePosition,
     positions
   );
-  const image = images[0];
+  const image = useImage(
+    imageIndex !== undefined ? `/images/${imageIndex}.jpg` : undefined
+  )[0];
   useEffect(() => {
     if (!image || !absolutePosition || !pointPosition) {
       setStyle(undefined);
