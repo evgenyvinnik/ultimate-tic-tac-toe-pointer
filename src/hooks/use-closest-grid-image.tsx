@@ -18,55 +18,59 @@ import { images } from "../assets/images";
 
 const fetchPositions: Point[] = positionsJson.map(([x, y]) => ({ x, y }));
 
+export type GridImage = {
+  style: CSSProperties | undefined;
+  image: HTMLImageElement | undefined;
+};
+
 export const useClosestGridImage = (absolutePosition?: Point) => {
-  const [style, setStyle] = useState<CSSProperties | undefined>();
+  const [gridImage, setGridImage] = useState<GridImage | undefined>();
   const windowSize = useWindowSize();
-  const positions = fetchPositions;
 
   const [imageIndex, pointPosition] = useClosest(
     windowSize,
     absolutePosition,
-    positions
+    fetchPositions
   );
 
-  const image = ((index: number | undefined) => {
-    if (index != null) {
-      const image = new Image();
-      image.src = (images as any)[index] as any;
-      return image;
-    }
-    return null;
-  })(imageIndex);
-
   useEffect(() => {
-    if (!image || !absolutePosition || !pointPosition) {
-      setStyle(undefined);
-      return;
+    if (!!imageIndex && !!absolutePosition && !!pointPosition) {
+      const loadImage = new Image();
+      loadImage.src = (images as any)[imageIndex] as any;
+      loadImage.onload = function () {
+        const position = dividePoints(absolutePosition, windowSize);
+        const origin = multiplyPointByNumber(pointPosition, 100);
+        const imageSize = pointFromSize(loadImage);
+        const resizedImageSize = fitSize(imageSize, windowSize);
+        const translate = multiplyPointByNumber(
+          multiplyPoints(
+            subtractPoints(resizedImageSize, windowSize),
+            position
+          ),
+          -1
+        );
+        const adjustment = multiplyPoints(
+          subtractPoints(position, pointPosition),
+          resizedImageSize
+        );
+
+        setGridImage({
+          style: {
+            width: `${resizedImageSize.x}px`,
+            height: `${resizedImageSize.y}px`,
+            transform: translate
+              ? `${pointToCSSTransform(
+                  addPoints(translate, adjustment),
+                  "translate",
+                  "px"
+                )} scale(1.2)`
+              : undefined,
+            transformOrigin: `${origin.x}% ${origin.y}%`,
+          },
+          image: loadImage,
+        });
+      };
     }
-    const position = dividePoints(absolutePosition, windowSize);
-    const origin = multiplyPointByNumber(pointPosition, 100);
-    const imageSize = pointFromSize(image);
-    const resizedImageSize = fitSize(imageSize, windowSize);
-    const translate = multiplyPointByNumber(
-      multiplyPoints(subtractPoints(resizedImageSize, windowSize), position),
-      -1
-    );
-    const adjustment = multiplyPoints(
-      subtractPoints(position, pointPosition),
-      resizedImageSize
-    );
-    setStyle({
-      width: `${resizedImageSize.x}px`,
-      height: `${resizedImageSize.y}px`,
-      transform: translate
-        ? `${pointToCSSTransform(
-            addPoints(translate, adjustment),
-            "translate",
-            "px"
-          )} scale(1.2)`
-        : undefined,
-      transformOrigin: `${origin.x}% ${origin.y}%`,
-    });
-  }, [windowSize, pointPosition, image, absolutePosition]);
-  return [image, style] as [typeof image, typeof style];
+  }, [absolutePosition, imageIndex, pointPosition, windowSize]);
+  return [gridImage];
 };

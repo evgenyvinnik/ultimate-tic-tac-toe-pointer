@@ -14,20 +14,7 @@ const App: React.FC = () => {
   const windowSize = useWindowSize();
 
   const [bind, position, mousePosition] = useDebouncedPosition();
-  const [image, style] = useClosestGridImage(position);
-
-  const [displayImage, setDisplayImage] = useState<
-    HTMLImageElement | undefined
-  >(undefined);
-  const [displayStyle, setDisplayStyle] = useState<
-    React.CSSProperties | undefined
-  >(undefined);
-  useEffect(() => {
-    if (image != null && style != null) {
-      setDisplayImage(image);
-      setDisplayStyle(style);
-    }
-  }, [image, style]);
+  const [gridImage] = useClosestGridImage(position);
 
   return (
     <>
@@ -46,20 +33,20 @@ const App: React.FC = () => {
           height: windowSize.y,
         }}
       >
-        {/* {!isMouse && mousePosition ? <Cursor position={mousePosition} /> : null}
-        {displayImage ? (
+        {!isMouse && mousePosition ? <Cursor position={mousePosition} /> : null}
+        {gridImage?.image ? (
           <div style={{ position: "absolute" }}>
             <img
-              style={displayStyle}
+              style={gridImage?.style}
               alt="someone pointing at your pointer"
-              key={displayImage.src}
-              src={displayImage.src}
+              key={gridImage?.image.src}
+              src={gridImage?.image.src}
             />
           </div>
-        ) : null} */}
-        {/* <Container>
+        ) : null}
+        <Container>
           <Game />
-        </Container> */}
+        </Container>
       </div>
     </>
   );

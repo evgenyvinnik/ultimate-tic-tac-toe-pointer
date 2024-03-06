@@ -16,7 +16,7 @@ export const useDebouncedPosition = () => {
   const bind = (isMouse ? useMove : useDrag)(({ xy: [x, y] }) => {
     setPosition({ x: x, y });
   });
-  const debouncedPosition = useDebounce(position, 20);
+  const debouncedPosition = useDebounce(position, 30);
   return [bind, debouncedPosition, !left ? position : undefined] as [
     typeof bind,
     typeof debouncedPosition,
