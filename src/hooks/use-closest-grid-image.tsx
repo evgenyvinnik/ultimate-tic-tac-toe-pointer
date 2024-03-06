@@ -16,6 +16,7 @@ import { useClosest } from "../closest";
 import { useImage } from "./use-image";
 import { useWindowSize } from "./use-window-size";
 import positionsJson from "../new-positions.json";
+import { images } from "../assets/images";
 
 // const fetchPositions = async (): Promise<Point[]> =>
 //   (
@@ -35,9 +36,7 @@ export const useClosestGridImage = (absolutePosition?: Point) => {
     absolutePosition,
     positions
   );
-  const image = useImage(
-    imageIndex !== undefined ? `/images/${imageIndex}.jpg` : undefined
-  )[0];
+  const image = images[0];
   useEffect(() => {
     if (!image || !absolutePosition || !pointPosition) {
       setStyle(undefined);

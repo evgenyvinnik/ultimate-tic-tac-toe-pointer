@@ -4,7 +4,7 @@ import { Point } from "./Point";
 import { isMouse } from "./utils";
 
 export const Loading: React.FC<{ position?: Point }> = ({ position }) => {
-  const pointing = useDebounce(position, 200);
+  const pointing = useDebounce(position, 100);
   return (
     <div className={`Loading ${position ? "mod-loader" : ""}`}>
       <div>
