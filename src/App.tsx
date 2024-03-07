@@ -83,24 +83,25 @@ const App: React.FC = () => {
   return (
     <>
       <div
-        className="Interactions"
-        style={{
-          width: windowSize.x,
-          height: windowSize.y,
-        }}
-        {...bind()}
-      />
-      <div
         className="App"
         style={{
           width: windowSize.x,
           height: windowSize.y,
         }}
       >
+        <div
+          className="Interactions"
+          style={{
+            width: windowSize.x,
+            height: windowSize.y,
+            pointerEvents: "all",
+          }}
+          {...bind()}
+        />
         {!isMouse && mousePosition ? <Cursor position={mousePosition} /> : null}
 
         {gridImage?.image ? (
-          <div style={{ position: "absolute" }}>
+          <div style={{ position: "absolute", pointerEvents: "none" }}>
             <img
               style={gridImage?.style}
               alt="someone pointing at your pointer"
@@ -113,6 +114,7 @@ const App: React.FC = () => {
           style={{
             zIndex: 2001,
             position: "absolute",
+            pointerEvents: "none",
           }}
         >
           <Header setStatus={statusUpdate} welcome={status === "welcomeMenu"} />

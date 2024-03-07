@@ -6,6 +6,7 @@ export const Cursor: React.FC<{ position: Point }> = ({ position }) => (
     style={{
       zIndex: 2000,
       position: "absolute",
+      pointerEvents: "none",
       transform: `translate(${position.x - 3}px, ${position.y - 4}px)`,
     }}
   >

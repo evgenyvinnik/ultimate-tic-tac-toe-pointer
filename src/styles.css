@@ -97,6 +97,7 @@ td {
   font-weight: bold;
   font-size: 1rem;
   padding: 0.2rem;
+  pointer-events: all;
 }
 
 .container {
