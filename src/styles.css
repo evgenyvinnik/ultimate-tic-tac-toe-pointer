@@ -8,6 +8,7 @@ table {
   margin-bottom: 1.5rem;
   border-collapse: collapse;
   border-style: hidden;
+  /* height: 90vh; */
 }
 
 body {
@@ -36,14 +37,16 @@ h1 {
   font-weight: bold;
   line-height: 2rem;
   height: 2rem;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
+  /* margin-right: -1px;
+  margin-top: -1px; */
+  /* padding: 4px; */
+  margin: 4px;
   text-align: center;
   width: 2rem;
   max-width: 33%;
   max-height: 33%;
   white-space: nowrap;
+  pointer-events: all;
 }
 
 .highlighted {
@@ -52,6 +55,11 @@ h1 {
 
 .greyed {
   background: lightgray;
+}
+
+.board-row {
+  padding: 0px;
+  /* width: 33vw; */
 }
 
 .board-row:after {
@@ -106,6 +114,17 @@ td {
   z-index: -1;
   position: absolute;
   overflow: hidden; */
+  /* width: 100%; */
+  z-index: 2001;
+  position: absolute;
+  pointer-events: none;
+
+  bottom: 0;
+  left: 0;
+  /* transform: translateY(100%); */
+  /* width: 100vw;
+  height: 100vh; */
+  text-align: center;
 }
 
 .rulesText {
@@ -124,6 +143,7 @@ td {
   background: #76bdd5;
   border: 0px;
   border-radius: 0.4rem;
+  pointer-events: all;
 }
 
 .headerText {

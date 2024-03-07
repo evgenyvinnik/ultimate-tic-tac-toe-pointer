@@ -110,16 +110,10 @@ const App: React.FC = () => {
             />
           </div>
         ) : null}
-        <div
-          style={{
-            zIndex: 2001,
-            position: "absolute",
-            pointerEvents: "none",
-          }}
-        >
+        <div className="container">
           <Header setStatus={statusUpdate} welcome={status === "welcomeMenu"} />
           {children}
-          <Rules />
+          {/* <Rules /> */}
         </div>
       </div>
     </>
