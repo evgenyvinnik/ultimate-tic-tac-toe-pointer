@@ -8,7 +8,18 @@ table {
   margin-bottom: 1.5rem;
   border-collapse: collapse;
   border-style: hidden;
-  /* height: 90vh; */
+  width: min(85vw, 85vh);
+  height: min(85vw, 85vh);
+}
+
+.table-column {
+  width: 33%;
+  height: 33%;
+}
+
+.table-row {
+  width: 33%;
+  height: 33%;
 }
 
 body {
@@ -32,21 +43,17 @@ h1 {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 2rem;
-  height: 2rem;
-  /* margin-right: -1px;
-  margin-top: -1px; */
-  /* padding: 4px; */
+  height: 100%;
+  width: 30%;
+  padding: 4px;
   margin: 4px;
   text-align: center;
-  width: 2rem;
-  max-width: 33%;
-  max-height: 33%;
   white-space: nowrap;
   pointer-events: all;
+  opacity: 0.8;
 }
 
 .highlighted {
@@ -58,7 +65,9 @@ h1 {
 }
 
 .board-row {
-  padding: 0px;
+  padding: 4px;
+  display: flex;
+  height: 30%;
   /* width: 33vw; */
 }
 
@@ -109,21 +118,13 @@ td {
 }
 
 .container {
-  /* width: 100%;
-  text-align: center;
-  z-index: -1;
-  position: absolute;
-  overflow: hidden; */
-  /* width: 100%; */
   z-index: 2001;
   position: absolute;
   pointer-events: none;
-
   bottom: 0;
   left: 0;
-  /* transform: translateY(100%); */
-  /* width: 100vw;
-  height: 100vh; */
+  width: 100%;
+  height: 100%;
   text-align: center;
 }
 

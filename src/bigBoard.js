@@ -106,9 +106,9 @@ export default function BigBoard({ robot, appStatus, playerIsX }) {
           </div>
         );
       }
-      boardArray.push(<td key={k + "cell"}>{children}</td>);
+      boardArray.push(<td className="table-column" key={k + "cell"}>{children}</td>);
     }
-    rows.push(<tr key={i + "row"}>{boardArray}</tr>);
+    rows.push(<tr className="table-row" key={i + "row"}>{boardArray}</tr>);
   }
 
   return (
