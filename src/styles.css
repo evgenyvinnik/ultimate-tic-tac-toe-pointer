@@ -8,8 +8,9 @@ table {
   margin-bottom: 1.5rem;
   border-collapse: collapse;
   border-style: hidden;
-  width: min(85vw, 85vh);
-  height: min(85vw, 85vh);
+  width: min(82vw, 82vh);
+  height: min(82vw, 82vh);
+  display: inline-table;
 }
 
 .table-column {
@@ -30,9 +31,9 @@ body {
 
 h1 {
   margin-top: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
   width: 100%;
-  background: lightblue;
+  background: black;
 }
 
 .header {
@@ -46,13 +47,11 @@ h1 {
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 2rem;
-  height: 100%;
-  width: 30%;
-  padding: 4px;
+  width: 33%;
   margin: 4px;
   text-align: center;
   white-space: nowrap;
-  pointer-events: all;
+  pointer-events: initial;
   opacity: 0.8;
 }
 
@@ -65,10 +64,8 @@ h1 {
 }
 
 .board-row {
-  padding: 4px;
   display: flex;
-  height: 30%;
-  /* width: 33vw; */
+  height: 33%;
 }
 
 .board-row:after {
@@ -102,8 +99,7 @@ h1 {
 
 td {
   position: relative;
-  border: 0.2rem solid lightblue;
-  padding: 0.4rem;
+  border: 0.2rem solid white;
 }
 
 .rulesButton {
@@ -112,7 +108,7 @@ td {
   background: lightblue;
   border-radius: 0.4rem;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: xx-large;
   padding: 0.2rem;
   pointer-events: all;
 }
@@ -141,10 +137,11 @@ td {
 .resetButton {
   right: 1rem;
   margin: 0.4rem;
-  background: #76bdd5;
+  background: white;
   border: 0px;
   border-radius: 0.4rem;
   pointer-events: all;
+  font-size: xx-large;
 }
 
 .headerText {
@@ -158,7 +155,8 @@ td {
   width: 3rem;
   height: 1.6rem;
   margin: 0.4rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+  pointer-events: all;
 }
 
 /* Hide default HTML checkbox */
@@ -198,11 +196,11 @@ td {
 }
 
 input:checked + .slider {
-  background-color: #4fabc9;
+  background-color: #4a4a4a;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #4fabc9;
+  box-shadow: 0 0 1px #cdcdcd;
 }
 
 input:checked + .slider:before {
@@ -221,6 +219,7 @@ input:checked + .slider:before {
 }
 
 .lowerText {
+  margin-top: 1.2em;
   display: flex;
   flex-wrap: wrap;
   max-width: 33%;

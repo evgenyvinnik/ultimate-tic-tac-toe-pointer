@@ -3,7 +3,7 @@ html {
   margin: 0;
   background: black;
   color: white;
-  font-size: calc(10px + 0.5vw);
+  font-size: xx-large;
   overflow: hidden;
   position: absolute;
 }
