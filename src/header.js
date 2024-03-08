@@ -1,7 +1,7 @@
 export default function Header({ setStatus, welcome = false }) {
   return (
     <h1 className="header">
-      <span className="headerText">Ultimate Tic-Tac-Toe</span>
+      <span className="headerText">Ultimate Tic-Tac-Toe + PointerPointer</span>
       {!welcome && BackButton({ setStatus })}
     </h1>
   );
