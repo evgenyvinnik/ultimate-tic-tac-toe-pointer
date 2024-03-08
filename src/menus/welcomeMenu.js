@@ -13,14 +13,6 @@ export default function WelcomeMenu({ setStatus }) {
       <button
         className="resetButton"
         onClick={() => {
-          setStatus("networkMenu");
-        }}
-      >
-        2 player online
-      </button>
-      <button
-        className="resetButton"
-        onClick={() => {
           setStatus("aiMenu");
         }}
       >
