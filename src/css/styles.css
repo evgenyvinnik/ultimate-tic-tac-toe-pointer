@@ -8,8 +8,8 @@ table {
   margin-bottom: 1.5rem;
   border-collapse: collapse;
   border-style: hidden;
-  width: min(82vw, 82vh);
-  height: min(82vw, 82vh);
+  width: min(80vw, 80vh);
+  height: min(80vw, 80vh);
   display: inline-table;
 }
 
